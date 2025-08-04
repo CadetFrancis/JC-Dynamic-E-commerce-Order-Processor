@@ -17,7 +17,7 @@ public class InteractiveOrderProcessor {
         //PART 1
         InteractiveOrderProcessor newOrder = new InteractiveOrderProcessor();
 
-        System.out.println("Welcome to the Interactive Order Processor!\n");
+        System.out.println("\nWelcome to the Interactive Order Processor!\n");
         System.out.println("--- Enter Order Details ---");
         System.out.print("Enter unit price: ");
         unitPrice = sc.nextDouble();
@@ -60,11 +60,27 @@ public class InteractiveOrderProcessor {
         double finalOrderTotal = newOrder.finalTotal(afterSmallOrderSurcharge,shippingFee);
         System.out.printf("Final Order Total: $%.2f\n", finalOrderTotal);
 
+
+        //PART 2
+        System.out.println("\n--- String Equality Demo ---");
+        System.out.print("Enter first string for comparison: ");
+        String firstString = sc.next();
+        System.out.print("Enter second string for comparison: ");
+        String secondString = sc.next();
+
+        System.out.println("\nString 1: " + firstString);
+        System.out.println("String 2: " + secondString);
+
+        boolean firstResult = firstString == secondString;
+        System.out.println("\nString 1 == String 2: " + firstResult + "(Returns false since it compares the references which they are different.)");
+        boolean secondResult = firstString.equals(secondString);
+        System.out.println("String 1 .equals() String 2: " + secondResult + "(Returns false since they have a case difference on the first letter.)");
+        boolean thirdResult = firstString.equalsIgnoreCase(secondString);
+        System.out.println("String 1 .equalsIgnoreCase() String 2: " + thirdResult + "(Returns true since it compares the content and ignores the case.)");
+        System.out.println("Using .equals() is generally more preferred since this compares the actual content of the String object. Using == would only compare the reference, not the content.");
+
         sc.close();
     }
-
-
-
 
     //-----------------------------------------------------------------------------------------------------------
 
@@ -78,7 +94,7 @@ public class InteractiveOrderProcessor {
         } else if (customerTier.equalsIgnoreCase("silver")) {
             return "(Silver - 10%)";
         }else{
-            return null;
+            return "";
         }
     }
     public double tierDiscount(){
@@ -111,13 +127,13 @@ public class InteractiveOrderProcessor {
             shippingFee = 0.0;
             return "(Free Shipping)";
         }else{
-            return null;
+            return "";
         }
     }
     public double promotionalDiscount(double afterQuantityDiscount) {
         if (discountCode.equals("SAVE10") && afterQuantityDiscount > 75){
             return afterQuantityDiscount-10;
-        } else if (discountCode.equalsIgnoreCase("FREESHIP")) {
+        } else if (discountCode.equalsIgnoreCase("freeship")) {
             shippingFee = 0.0;
             return afterQuantityDiscount;
         }else{
@@ -131,7 +147,7 @@ public class InteractiveOrderProcessor {
     }
 
     public void shippingCost(){
-        if (discountCode.equals("FREESHIP")){
+        if (discountCode.equalsIgnoreCase("FREESHIP")){
             shippingFee = 0.0;
         }else{
             switch(shippingZone.toLowerCase()){
@@ -149,7 +165,6 @@ public class InteractiveOrderProcessor {
                     break;
             }
         }
-
     }
 
     public double finalTotal(double cumulativeTotal, double shippingFee){

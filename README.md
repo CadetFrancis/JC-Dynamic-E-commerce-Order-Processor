@@ -12,7 +12,7 @@ Develop an interactive Java application that simulates a complex order processin
 * switch-case statements
 * String equality (.equals(), .equalsIgnoreCase(), and ==)
 ***
-## Code:
-![image_info](./code.png)
-## Output:
-![image_info](./output.png)
+## Part 1 Output:
+![image_info](./part1-output.png)
+## Part 2 Output:
+![image_info](./part2-output.png)
